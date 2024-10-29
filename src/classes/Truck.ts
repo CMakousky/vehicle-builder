@@ -62,7 +62,7 @@ class Truck extends Vehicle {
 
     // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
     // TODO: If it is, log that the vehicle is being towed
-    if (towTarget.weight < this.towingCapacity){console.log(`${towTarget.make} ${towTarget.model} is being towed.`)}
+    if (towTarget.weight <= this.towingCapacity){console.log(`${towTarget.make} ${towTarget.model} is being towed.`)}
     // TODO: If it is not, log that the vehicle is too heavy to be towed
     else {console.log(`${towTarget.make} ${towTarget.model} is too heavy to tow!`)};
   };
