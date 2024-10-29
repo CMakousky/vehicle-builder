@@ -297,12 +297,13 @@ class Cli {
       .then((answers) => {
         // TODO: check if the selected vehicle is the truck
         // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
-        if (answers.vehicleToTow.name === `${truck.vin} -- ${truck.make} ${truck.model}`){
-          console.log(`${truck.vin} -- ${truck.make} ${truck.model} cannot tow itself!`);
+        if (answers.vehicleToTow === truck){
+          console.log(`\n${truck.vin} -- ${truck.make} ${truck.model} cannot tow itself!\n`);
+          this.performActions();
         }
         // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
         else {
-          console.log(`${truck.vin} -- ${truck.make} ${truck.model} tows ${answers.vehicleToTow.name}.`);
+          truck.tow(answers.vehicleToTow);
           this.performActions();
         }
       });
@@ -326,10 +327,10 @@ class Cli {
             'Turn right',
             'Turn left',
             'Reverse',
+            'Tow',
+            'Wheelie',
             'Select or create another vehicle',
             'Exit',
-            'Tow',
-            'Wheelie'
           ],
         },
       ])
@@ -409,6 +410,9 @@ class Cli {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike) {
               const wheelieBike: any = this.vehicles[i];
               wheelieBike.wheelie();
+            }
+            else if (this.vehicles[i].vin === this.selectedVehicleVin && !(this.vehicles[i] instanceof Motorbike)) {
+              console.log(`\n${this.vehicles[i].vin} -- ${this.vehicles[i].make} ${this.vehicles[i].model} cannot perform a wheelie!\n`);
             }
           }
         }
