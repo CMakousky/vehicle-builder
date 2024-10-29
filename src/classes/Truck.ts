@@ -59,12 +59,12 @@ class Truck extends Vehicle implements AbleToTow {
   tow(vehicle: Truck | Motorbike | Car): void {
     // TODO: Get the make an model of the vehicle if it exists
     let towTargetMake: string;
-    if (vehicle.make !== null) {towTargetMake = vehicle.make}
-    else {towTargetMake = 'unknown make'};
+    if (vehicle.make !== '') {towTargetMake = vehicle.make}
+    else {towTargetMake = 'Unknown-Make'};
     
     let towTargetModel: string;
-    if (vehicle.model !== null) {towTargetModel = vehicle.model}
-    else {towTargetModel = 'unknown model'};
+    if (vehicle.model !== '') {towTargetModel = vehicle.model}
+    else {towTargetModel = 'Unknown-Model'};
 
     // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
     // TODO: If it is, log that the vehicle is being towed
