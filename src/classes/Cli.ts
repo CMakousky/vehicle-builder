@@ -397,9 +397,11 @@ class Cli {
         else if (answers.action === 'Tow') {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
-              const towTruck: any = this.vehicles[i];
-              this.findVehicleToTow(towTruck);
+              this.findVehicleToTow(this.vehicles[i] as Truck);
               return;
+            }
+            else if (this.vehicles[i].vin === this.selectedVehicleVin && !(this.vehicles[i] instanceof Truck)) {
+              console.log(`\n${this.vehicles[i].vin} -- ${this.vehicles[i].make} ${this.vehicles[i].model} cannot perform a tow!\n`);
             }
           }
         }
@@ -408,8 +410,7 @@ class Cli {
         else if (answers.action === 'Wheelie') {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Motorbike) {
-              const wheelieBike: any = this.vehicles[i];
-              wheelieBike.wheelie();
+              (this.vehicles[i] as Motorbike).wheelie();
             }
             else if (this.vehicles[i].vin === this.selectedVehicleVin && !(this.vehicles[i] instanceof Motorbike)) {
               console.log(`\n${this.vehicles[i].vin} -- ${this.vehicles[i].make} ${this.vehicles[i].model} cannot perform a wheelie!\n`);
