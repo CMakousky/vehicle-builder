@@ -266,7 +266,7 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          []
+          [new Wheel(parseInt(answers.frontWheelDiameter), answers.frontWheelBrand), new Wheel(parseInt(answers.rearWheelDiameter), answers.rearWheelBrand)]
         );
         // TODO: push the motorbike to the vehicles array
         this.vehicles.push(motorbike);
@@ -395,14 +395,18 @@ class Cli {
         }
         // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
         else if (answers.action === 'Tow') {
+          let vehicleToTow: Truck | undefined;
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin && this.vehicles[i] instanceof Truck) {
-              this.findVehicleToTow(this.vehicles[i] as Truck);
-              return;
+              vehicleToTow = this.vehicles[i] as Truck;
             }
             else if (this.vehicles[i].vin === this.selectedVehicleVin && !(this.vehicles[i] instanceof Truck)) {
               console.log(`\n${this.vehicles[i].vin} -- ${this.vehicles[i].make} ${this.vehicles[i].model} cannot perform a tow!\n`);
             }
+          }
+          if (vehicleToTow instanceof Truck) {
+            this.findVehicleToTow(vehicleToTow as Truck);
+            return;
           }
         }
 

@@ -22,7 +22,7 @@ This app requires the inquirer and typescript packages, as well as the node.js s
 
 Run index.js using node.js and follow the on-screen prompts. See the linked video for a short demo of the vehicle-builder in action.
 
-googledrive-link-placeholder
+[vehicle-builder demo](https://drive.google.com/file/d/146RGqEmRkOkvqa4k45nNMu3Hgff8_Uhh/view?usp=sharing)
 
 ## Contributing
 
